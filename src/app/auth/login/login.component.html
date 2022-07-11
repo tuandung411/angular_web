@@ -1,18 +1,33 @@
-<div class="login">
-    <div class="header">Phầm mềm quản lý
-    </div>
-    <div class="main">
-        <nz-input-group [nzSuffix]="suffixIconSearch">
-            <input type="text" nz-input placeholder="input search text" />
-        </nz-input-group>
-        <ng-template #suffixIconSearch>
-            <i nz-icon nzType="search"></i>
-        </ng-template>
-    </div>
-    <div class="logo">
-        <div class="logoContainer">
+<!--<div class="login">-->
+<!--    <div class="header">Phầm mềm quản lý-->
+<!--    </div>-->
+<!--    <div class="main">-->
+<!--        <nz-input-group [nzSuffix]="suffixIconSearch">-->
+<!--            <input type="text" nz-input placeholder="input search text" />-->
+<!--        </nz-input-group>-->
+<!--        <ng-template #suffixIconSearch>-->
+<!--            <i nz-icon nzType="search"></i>-->
+<!--        </ng-template>-->
+<!--    </div>-->
+<!--    <div class="logo">-->
+<!--        <div class="logoContainer">-->
 
-        </div>
+<!--        </div>-->
 
+<!--    </div>-->
+<!--</div>-->
+<div>
+  <form [formGroup]="loginForm" #loginNgForm="ngForm">
+    <label>Username</label>
+    <input type="text" [formControlName]="formFieldName.username">
+    <label>Email</label>
+    <input type="email" [formControlName]="formFieldName.email">
+    <div *ngIf="loginForm.get(formFieldName.email)?.hasError('required') && loginForm.touched">
+      Email is required
     </div>
+    <label>Password</label>
+    <input type="password" [formControlName]="formFieldName.password">
+    <!-- Submit button -->
+    <button [disabled]="!loginForm.valid" (click)="login()">Login</button>
+  </form>
 </div>
