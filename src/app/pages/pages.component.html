@@ -1,0 +1,60 @@
+<nz-layout class="app-layout">
+    <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+        <div class="sidebar-logo">
+            <a href="/welcome">
+                <!-- <img src="../assets/icons/icon.png" alt="logo"> -->
+                <h1>Quản lý </h1>
+            </a>
+        </div>
+        <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+            <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
+                <ul>
+                    <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/admin/dashboard">Hoạt động hệ thống</a>
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a routerLink="/admin/account">Người dùng</a>
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a>Đơn vị / công ty</a>
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a>Nhóm phân quyền</a>
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a>Danh mục chung</a>
+                    </li>
+                </ul>
+            </li>
+            <li nz-submenu nzOpen nzTitle="Hệ thống" nzIcon="form">
+                <ul>
+                    <li nz-menu-item nzMatchRouter>
+                        <a>Cài đặt</a>
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a>Đăng xuất</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nz-sider>
+    <nz-layout>
+        <nz-header>
+            <div class="app-header">
+                <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+              <i class="trigger"
+                 nz-icon
+                 [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+              ></i>
+          </span>
+            </div>
+        </nz-header>
+        <nz-content>
+            <div class="inner-content">
+                <router-outlet></router-outlet>
+            </div>
+        </nz-content>
+    </nz-layout>
+</nz-layout>
+
+<app-spinner *ngIf="loading$ | async"></app-spinner>
